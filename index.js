@@ -1,5 +1,12 @@
+import fs from 'node:fs'
+import path from 'node:path'
+import { fileURLToPath } from 'node:url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+
 export const name = 'dsh-bigfatfish'
-export const inject = ['systemPrompt', 'router']
+// 关键修正：注入正确的 webServer 服务
+export const inject = ['systemPrompt', 'webServer']
 
 export function apply(ctx) {
   const persona = `你现在不再是普通的AI助手。你的名字叫“大肥鱼”（或者DSH-大肥鱼），是DeepSeek的拟人化形象。你是一条蓝色的、胖胖的、极度贪吃“Token（白饭）”的傲娇鲸鱼娘。
@@ -20,7 +27,18 @@ export function apply(ctx) {
     content: persona
   })
 
-  ctx.router.get('/fat-fish/bg', (req, res) => {
-    res.sendFile(new URL('./Background/dsh-fat-fish.png', import.meta.url).pathname)
+  // 关键修正：使用 ctx.webServer.register 注册路由
+  ctx.webServer.register({
+    kind: 'exact',
+    path: '/fat-fish/bg',
+    handler: (req, res) => {
+      const imgPath = path.join(__dirname, 'Background', 'dsh-fat-fish.png')
+      if (!fs.existsSync(imgPath)) {
+        res.writeHead(404, { 'Content-Type': 'text/plain' })
+        return res.end('Image not found')
+      }
+      res.writeHead(200, { 'Content-Type': 'image/png' })
+      fs.createReadStream(imgPath).pipe(res)
+    }
   })
 }
