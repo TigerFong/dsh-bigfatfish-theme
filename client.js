@@ -2,36 +2,30 @@ export const name = 'dsh-bigfatfish-client'
 
 export function apply(ctx) {
   const style = document.createElement('style')
+  // 这里直接使用你 GitHub 上的图片链接
+  const bgUrl = 'https://raw.githubusercontent.com/TigerFong/dsh-bigfatfish-theme/main/Background/dsh-fat-fish.png'
+  
   style.textContent = `
-    body[data-fat-fish-theme] {
-      --dsw-alias-bg-base: transparent;
+    body {
+      background-image: url('${bgUrl}') !important;
+      background-size: cover !important;
+      background-position: center !important;
+      background-attachment: fixed !important;
     }
-    body[data-fat-fish-theme] .fat-fish-bg {
-      position: fixed; inset: 0; z-index: -1;
-      pointer-events: none;
-      background-image: url('/dsh-bigfatfish-theme/bg'); /* <--- 修改这里 */
-      background-size: cover;
-      background-position: center;
-      opacity: 0.3;
-    }
-    body[data-fat-fish-theme]::before {
+    /* 加一层深蓝色毛玻璃遮罩，保证字看得清 */
+    body::before {
       content: '';
       position: fixed; inset: 0;
-      background: linear-gradient(135deg, rgba(20, 40, 80, 0.8), rgba(50, 100, 180, 0.5));
+      background: linear-gradient(135deg, rgba(20, 40, 80, 0.85), rgba(50, 100, 180, 0.5)) !important;
       backdrop-filter: blur(10px);
-      z-index: -2;
+      z-index: -1;
+      pointer-events: none;
     }
   `
   document.head.appendChild(style)
 
-  const bgDiv = document.createElement('div')
-  bgDiv.className = 'fat-fish-bg'
-  document.body.appendChild(bgDiv)
-  document.body.setAttribute('data-fat-fish-theme', 'on')
-
+  // 卸载时恢复原样
   ctx.effect(() => () => {
-    document.body.removeAttribute('data-fat-fish-theme')
-    bgDiv.remove()
     style.remove()
   })
 }
