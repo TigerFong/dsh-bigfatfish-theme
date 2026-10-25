@@ -9,7 +9,7 @@ export function apply(ctx) {
     body[data-fat-fish-theme] .fat-fish-bg {
       position: fixed; inset: 0; z-index: -1;
       pointer-events: none;
-      background-image: url('/fat-fish/bg');
+      background-image: url('/dsh-bigfatfish-theme/bg'); /* <--- 修改这里 */
       background-size: cover;
       background-position: center;
       opacity: 0.3;

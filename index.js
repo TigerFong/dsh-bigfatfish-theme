@@ -27,10 +27,10 @@ export function apply(ctx) {
     content: persona
   })
 
-  // 关键修正：使用 ctx.webServer.register 注册路由
+  // 修改这一段
   ctx.webServer.register({
     kind: 'exact',
-    path: '/fat-fish/bg',
+    path: '/dsh-bigfatfish-theme/bg', // <--- 修改这里，加上专属前缀
     handler: (req, res) => {
       const imgPath = path.join(__dirname, 'Background', 'dsh-fat-fish.png')
       if (!fs.existsSync(imgPath)) {
