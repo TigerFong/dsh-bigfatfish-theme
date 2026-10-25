@@ -4,7 +4,7 @@ export function apply(ctx) {
   const style = document.createElement('style')
   // 建议：把图片下载到本地 'Background/dsh-fat-fish.png'，然后用相对路径，或者换个稳定的图床
   // 这里暂时保留你的链接，但加了备用颜色
-  const bgUrl = 'https://raw.githubusercontent.com/TigerFong/dsh-bigfatfish-theme/main/Background/dsh-fat-fish.png'
+  const bgUrl = './Background/dsh-fat-fish.png'
   
   style.textContent = `
     body, #app, .main-container {
