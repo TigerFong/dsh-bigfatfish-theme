@@ -1,6 +1,6 @@
 {
   "name": "dsh-bigfatfish",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -14,7 +14,6 @@
     "Background"
   ],
   "dsh": {
-    "manifestVersion": 1,
     "bundle": {
       "patch": "./cordis.patch.yml"
     },
