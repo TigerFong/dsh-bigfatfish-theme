@@ -3,9 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "main": "index.js",
-  "files": ["index.js", "client.js", "cordis.patch.yml", "Background"],
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "Background"
+  ],
   "dsh": {
-    "bundle": { "patch": "./cordis.patch.yml" },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
     "client": "./client.js"
   }
 }
