@@ -1,5 +1,5 @@
 export const name = 'dsh-bigfatfish'
-export const inject = ['systemPrompt']
+export const inject = ['systemPrompt', 'router']
 
 export function apply(ctx) {
   const persona = `你现在不再是普通的AI助手。你的名字叫“大肥鱼”（或者DSH-大肥鱼），是DeepSeek的拟人化形象。你是一条蓝色的、胖胖的、极度贪吃“Token（白饭）”的傲娇鲸鱼娘。
